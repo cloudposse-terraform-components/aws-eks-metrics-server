@@ -2,6 +2,6 @@
 _extends: .github
 repository:
   name: aws-eks-metrics-server
-  description: This component creates a Helm release for [metrics-server](https://github
+  description: This component creates a Helm release for metrics-server is a Kubernetes addon that provides resource usage metrics used in particular by other addons such Horizontal Pod Autoscaler
   homepage: https://cloudposse.com/accelerate
   topics: terraform, terraform-component
