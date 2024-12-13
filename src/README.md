@@ -6,7 +6,7 @@ tags:
   - provider/helm
 ---
 
-# Component: `eks`
+# Component: `eks-metrics-server`
 
 This component creates a Helm release for [metrics-server](https://github.com/kubernetes-sigs/metrics-server) is a
 Kubernetes addon that provides resource usage metrics used in particular by other addons such Horizontal Pod Autoscaler.
