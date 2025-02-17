@@ -18,14 +18,13 @@ variable "chart" {
 variable "chart_repository" {
   type        = string
   description = "Repository URL where to locate the requested chart."
-  # TODO: Chart should default to https://kubernetes-sigs.github.io/metrics-server/
-  default = "https://charts.bitnami.com/bitnami"
+  default     = "https://kubernetes-sigs.github.io/metrics-server/"
 }
 
 variable "chart_version" {
   type        = string
   description = "Specify the exact chart version to install. If this is not specified, the latest version is installed."
-  default     = "6.2.6"
+  default     = "3.11.0"
 }
 
 variable "resources" {
@@ -102,6 +101,13 @@ variable "rbac_enabled" {
 
 variable "eks_component_name" {
   type        = string
-  description = "The name of the eks component"
+  description = "The name of the EKS component"
   default     = "eks/cluster"
 }
+
+variable "metrics_server_component" {
+  type        = string
+  description = "The name of the Metrics Server component"
+  default     = "eks-metrics-server"
+}
+

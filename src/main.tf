@@ -1,7 +1,3 @@
-locals {
-  enabled = module.this.enabled
-}
-
 moved {
   from = kubernetes_namespace.default
   to   = module.metrics_server.kubernetes_namespace.default
@@ -24,6 +20,8 @@ module "metrics_server" {
   kubernetes_namespace             = var.kubernetes_namespace
   create_namespace_with_kubernetes = var.create_namespace
 
+  kubernetes_namespace_labels = merge(module.this.tags, { name = var.kubernetes_namespace })
+
   eks_cluster_oidc_issuer_url = replace(module.eks.outputs.eks_cluster_identity_oidc_issuer, "https://", "")
 
   values = compact([
@@ -43,11 +41,9 @@ module "metrics_server" {
     # metrics-server-specific values
     yamlencode({
       podLabels = merge({
-        chart = var.chart
-        # TODO: These should be configurable
-        # Chart should default to https://kubernetes-sigs.github.io/metrics-server/
-        repo      = "bitnami"
-        component = "hpa"
+        chart     = var.chart
+        repo      = "kubernetes-sigs-github-io"
+        component = var.metrics_server_component
         namespace = var.kubernetes_namespace
         vendor    = "kubernetes"
         },
@@ -59,3 +55,4 @@ module "metrics_server" {
 
   context = module.this.context
 }
+
