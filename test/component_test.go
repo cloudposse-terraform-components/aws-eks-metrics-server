@@ -3,14 +3,15 @@ package test
 import (
 	"context"
 	"fmt"
-	"testing"
 	"strings"
+	"testing"
+
+	"github.com/cloudposse/test-helpers/pkg/atmos"
 	helper "github.com/cloudposse/test-helpers/pkg/atmos/component-helper"
 	awsHelper "github.com/cloudposse/test-helpers/pkg/aws"
-	"github.com/cloudposse/test-helpers/pkg/atmos"
 	"github.com/cloudposse/test-helpers/pkg/helm"
-	"github.com/stretchr/testify/assert"
 	"github.com/gruntwork-io/terratest/modules/random"
+	"github.com/stretchr/testify/assert"
 
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	aggregatorclientset "k8s.io/kube-aggregator/pkg/client/clientset_generated/clientset"
@@ -44,20 +45,19 @@ func (s *ComponentSuite) TestBasic() {
 	assert.Equal(s.T(), len(metadataArray), 1)
 	metadata := metadataArray[0]
 
-	assert.Equal(s.T(), metadata.AppVersion, "0.6.2")
+	assert.Equal(s.T(), metadata.AppVersion, "0.6.4")
 	assert.Equal(s.T(), metadata.Chart, "metrics-server")
 	assert.NotNil(s.T(), metadata.FirstDeployed)
 	assert.NotNil(s.T(), metadata.LastDeployed)
 	assert.Equal(s.T(), metadata.Name, "metrics-server")
 	assert.Equal(s.T(), metadata.Namespace, namespace)
 	assert.NotNil(s.T(), metadata.Values)
-	assert.Equal(s.T(), metadata.Version, "6.2.6")
+	assert.Equal(s.T(), metadata.Version, "3.11.0")
 
 	clusterOptions := s.GetAtmosOptions("eks/cluster", stack, nil)
 	clusrerId := atmos.Output(s.T(), clusterOptions, "eks_cluster_id")
 
 	cluster := awsHelper.GetEksCluster(s.T(), context.Background(), awsRegion, clusrerId)
-
 
 	config, err := awsHelper.NewK8SClientConfig(cluster)
 	assert.NoError(s.T(), err)
