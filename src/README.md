@@ -10,6 +10,7 @@ tags:
 
 This component creates a Helm release for [metrics-server](https://github.com/kubernetes-sigs/metrics-server) is a
 Kubernetes addon that provides resource usage metrics used in particular by other addons such Horizontal Pod Autoscaler.
+
 ## Usage
 
 **Stack Level**: Regional
@@ -46,10 +47,7 @@ components:
 ```
 
 <!-- prettier-ignore-start -->
-<!-- prettier-ignore-end -->
-
-
-<!-- markdownlint-disable -->
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
 | Name | Version |
@@ -136,19 +134,12 @@ components:
 | Name | Description |
 |------|-------------|
 | <a name="output_metadata"></a> [metadata](#output\_metadata) | Block status of the deployed release |
-<!-- markdownlint-restore -->
-
-
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- prettier-ignore-end -->
 
 ## References
 
-
 - [metrics-server](https://artifacthub.io/packages/helm/bitnami/metrics-server) - Helm Chart
-
-- [metrics-server](https://github.com/kubernetes-sigs/metrics-server) - 
-
-
-
+- [metrics-server](https://github.com/kubernetes-sigs/metrics-server)
 
 [<img src="https://cloudposse.com/logo-300x69.svg" height="32" align="right"/>](https://cpco.io/homepage?utm_source=github&utm_medium=readme&utm_campaign=cloudposse-terraform-components/aws-eks-metrics-server&utm_content=)
-
